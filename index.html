@@ -239,7 +239,7 @@
             background-size: contain;
             background-position: center;
             background-repeat: no-repeat;
-            background-color: #e8e8e8;
+            background-color: #000;
             z-index: 9999;
             display: none;
         }
@@ -371,11 +371,12 @@
 
         // 이미지 미리 로드
         const doorImages = [
+            'images/door-0.png',
             'images/door-1.png',
             'images/door-2.png',
-            'images/door-3.png',
-            'images/door-4.jpg',
-            'images/door-5.jpg'
+            'images/door-3.jpeg',
+            'images/door-4.jpeg',
+            'images/door-5.png'
         ];
 
         // 페이지 로드 시 이미지 미리 로드
@@ -395,12 +396,10 @@
                 if (currentIndex < doorImages.length) {
                     doorAnimation.style.backgroundImage = `url('${doorImages[currentIndex]}')`;
                     currentIndex++;
-                    setTimeout(showNextImage, 300); // 0.3초 간격
+                    setTimeout(showNextImage, 200); // 0.2초 간격
                 } else {
-                    // 모든 이미지 표시 후 상세페이지로 이동
-                    setTimeout(() => {
-                        window.location.href = 'detail.html';
-                    }, 100);
+                    // 모든 이미지 표시 후 즉시 상세페이지로 이동
+                    window.location.href = 'detail.html';
                 }
             }
 
