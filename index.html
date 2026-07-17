@@ -155,7 +155,7 @@
             max-width: 85%;
             width: 320px;
             text-align: center;
-            animation: popupFadeIn 0.3s ease;
+            animation: popupFadeIn 0.3s ease, float 3s ease-in-out 0.3s infinite;
         }
 
         .popup-box.large {
@@ -303,7 +303,7 @@
 <body>
     <div class="main-container" id="mainContainer">
         <div class="door-area" id="doorArea" onclick="knockDoor()"></div>
-        <div class="knock-text" id="knockText">맞다면, 문을 열고<br>들어가보세요</div>
+        <div class="knock-text" id="knockText">문을 열고 들어가보세요</div>
 
     </div>
 
@@ -311,11 +311,11 @@
     <div class="popup-overlay" id="popup1">
         <div class="popup-box">
             <div class="popup-text">
-                들어가시겠습니까?
+                이곳은 예비신부를 위한 공간입니다.<br>올해 결혼 예정이신가요?
             </div>
             <div class="popup-buttons">
                 <button class="vintage-btn" onclick="closePopup1()">아니요</button>
-                <button class="vintage-btn" onclick="showPopup2()">네</button>
+                <button class="vintage-btn" onclick="showPopup2()">예</button>
             </div>
         </div>
     </div>
@@ -327,8 +327,8 @@
                 단, 한번 들어가면 나갈 수 없습니다.<br>그래도 들어가시겠어요?
             </div>
             <div class="popup-buttons">
-                <button class="vintage-btn" onclick="goBackToMain()">아니요</button>
-                <button class="vintage-btn" onclick="enterDoor()">네</button>
+                <button class="vintage-btn" onclick="enterDoor()">네!</button>
+                <button class="vintage-btn" onclick="enterDoor()">예!</button>
             </div>
         </div>
     </div>
