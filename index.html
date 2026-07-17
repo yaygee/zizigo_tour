@@ -97,6 +97,15 @@
             }
         }
 
+        @keyframes floatPopup {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-6px);
+            }
+        }
+
         .knock-text::after {
             content: '';
             position: absolute;
@@ -155,7 +164,7 @@
             max-width: 85%;
             width: 320px;
             text-align: center;
-            animation: popupFadeIn 0.3s ease, float 3s ease-in-out 0.3s infinite;
+            animation: popupFadeIn 0.3s ease, floatPopup 3s ease-in-out 0.3s infinite;
         }
 
         .popup-box.large {
