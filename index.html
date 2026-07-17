@@ -33,7 +33,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background-image: url('images/main-home.png');
+            background-image: url('images/main-home-new.png');
             background-size: contain;
             background-position: center;
             background-repeat: no-repeat;
@@ -60,11 +60,11 @@
 
         .knock-text {
             position: absolute;
-            top: calc(50% + 120px);
+            top: calc(50% + 140px);
             left: 50%;
             transform: translateX(-50%);
             color: #000;
-            font-size: 1.2rem;
+            font-size: 1rem;
             font-weight: bold;
             text-align: center;
             z-index: 1;
@@ -73,33 +73,54 @@
             border-radius: 20px;
             border: 3px solid #000;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            animation: blink 2s ease-in-out infinite;
+            opacity: 0;
+            animation: fadeInSmooth 1s ease-out 1s forwards, float 3s ease-in-out 1s infinite;
+        }
+
+        @keyframes fadeInSmooth {
+            from {
+                opacity: 0;
+                transform: translateX(-50%) translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            50% {
+                transform: translateX(-50%) translateY(-6px);
+            }
         }
 
         .knock-text::after {
             content: '';
             position: absolute;
             top: -12px;
-            left: 20px;
+            left: 50%;
+            transform: translateX(-50%);
             width: 0;
             height: 0;
             border-left: 12px solid transparent;
             border-right: 12px solid transparent;
             border-bottom: 15px solid #000;
-            transform: rotate(-30deg);
         }
 
         .knock-text::before {
             content: '';
             position: absolute;
             top: -8px;
-            left: 22px;
+            left: 50%;
+            transform: translateX(-50%);
             width: 0;
             height: 0;
             border-left: 10px solid transparent;
             border-right: 10px solid transparent;
             border-bottom: 12px solid #fff;
-            transform: rotate(-30deg);
             z-index: 1;
         }
 
@@ -108,57 +129,70 @@
             50% { opacity: 0.5; }
         }
 
-        .invitation-box {
-            position: absolute;
-            bottom: 10vh;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 10;
-            background: rgba(255, 255, 255, 0.95);
-            padding: 25px 20px;
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.7);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+        }
+
+        .popup-overlay.show {
+            display: flex;
+        }
+
+        .popup-box {
+            background: rgba(255, 255, 255, 0.98);
+            padding: 30px 25px;
             border: 4px solid #333;
             border-radius: 15px;
-            box-shadow:
-                0 8px 16px rgba(0, 0, 0, 0.3),
-                inset 0 2px 4px rgba(255, 255, 255, 0.5);
-            max-width: 80%;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            max-width: 85%;
             width: 320px;
             text-align: center;
-            display: none;
-            opacity: 0;
-            transition: opacity 0.5s ease;
+            animation: popupFadeIn 0.3s ease;
         }
 
-        .invitation-box.show {
-            display: block;
-            animation: fadeIn 0.5s ease forwards;
+        .popup-box.large {
+            width: 400px;
+            padding: 40px 25px;
         }
 
-        @keyframes fadeIn {
+        @keyframes popupFadeIn {
             from {
                 opacity: 0;
-                transform: translateX(-50%) translateY(20px);
+                transform: scale(0.9) translateY(20px);
             }
             to {
                 opacity: 1;
-                transform: translateX(-50%) translateY(0);
+                transform: scale(1) translateY(0);
             }
         }
 
-        .invitation-text {
-            font-size: 1rem;
-            line-height: 1.6;
+        .popup-text {
+            font-size: 1.1rem;
+            line-height: 1.7;
             color: #333;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             font-weight: 600;
-            letter-spacing: -0.5px;
+            letter-spacing: -0.3px;
         }
 
-        .button-container {
+        .popup-text.large {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            margin-bottom: 30px;
+        }
+
+        .popup-buttons {
             display: flex;
-            gap: 10px;
+            gap: 12px;
             justify-content: center;
-            flex-wrap: wrap;
         }
 
         .vintage-btn {
@@ -217,27 +251,34 @@
             }
 
             .knock-text {
-                font-size: 1rem;
-                top: calc(50% + 90px);
+                font-size: 0.85rem;
+                top: calc(50% + 100px);
+                padding: 10px 16px;
             }
 
-            .invitation-box {
-                padding: 20px 15px;
+            .popup-box {
                 width: 90%;
-                bottom: 8vh;
+                padding: 25px 20px;
             }
 
-            .invitation-text {
+            .popup-box.large {
+                width: 92%;
+                padding: 30px 22px;
+            }
+
+            .popup-text {
+                font-size: 1rem;
+            }
+
+            .popup-text.large {
                 font-size: 0.95rem;
             }
 
-            .button-container {
-                flex-direction: column;
-                gap: 12px;
+            .popup-buttons {
+                gap: 10px;
             }
 
             .vintage-btn {
-                width: 100%;
                 padding: 12px 20px;
                 font-size: 0.9rem;
             }
@@ -262,16 +303,32 @@
 <body>
     <div class="main-container" id="mainContainer">
         <div class="door-area" id="doorArea" onclick="knockDoor()"></div>
-        <div class="knock-text" id="knockText">노크해주세요!</div>
+        <div class="knock-text" id="knockText">맞다면, 문을 열고<br>들어가보세요</div>
 
-        <div class="invitation-box" id="invitationBox">
-            <div class="invitation-text">
-                결혼행 초대장이 도착했어요!<br>
-                초대를 수락하시겠어요?
+    </div>
+
+    <!-- 첫 번째 팝업 -->
+    <div class="popup-overlay" id="popup1">
+        <div class="popup-box">
+            <div class="popup-text">
+                들어가시겠습니까?
             </div>
-            <div class="button-container">
-                <button class="vintage-btn" onclick="handleAccept()">네</button>
-                <button class="vintage-btn" onclick="handleAccept()">수락할게요</button>
+            <div class="popup-buttons">
+                <button class="vintage-btn" onclick="closePopup1()">아니요</button>
+                <button class="vintage-btn" onclick="showPopup2()">네</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 두 번째 팝업 -->
+    <div class="popup-overlay" id="popup2">
+        <div class="popup-box large">
+            <div class="popup-text large">
+                단, 한번 들어가면 나갈 수 없습니다.<br>그래도 들어가시겠어요?
+            </div>
+            <div class="popup-buttons">
+                <button class="vintage-btn" onclick="goBackToMain()">아니요</button>
+                <button class="vintage-btn" onclick="enterDoor()">네</button>
             </div>
         </div>
     </div>
@@ -280,25 +337,36 @@
 
     <script>
         function knockDoor() {
-            const invitationBox = document.getElementById('invitationBox');
-            const knockText = document.getElementById('knockText');
-            const doorArea = document.getElementById('doorArea');
-
-            // 노크 텍스트와 문 클릭 영역 숨기기
-            knockText.style.display = 'none';
-            doorArea.style.display = 'none';
-
-            // 팝업 표시
-            invitationBox.classList.add('show');
+            const popup1 = document.getElementById('popup1');
+            popup1.classList.add('show');
         }
 
-        function handleAccept() {
-            // 팝업 숨기기
-            const invitationBox = document.getElementById('invitationBox');
-            invitationBox.style.display = 'none';
+        function closePopup1() {
+            const popup1 = document.getElementById('popup1');
+            popup1.classList.remove('show');
+        }
 
-            // 문 열림 애니메이션 시작
-            startDoorAnimation();
+        function showPopup2() {
+            const popup1 = document.getElementById('popup1');
+            const popup2 = document.getElementById('popup2');
+
+            popup1.classList.remove('show');
+            setTimeout(() => {
+                popup2.classList.add('show');
+            }, 200);
+        }
+
+        function goBackToMain() {
+            window.location.reload();
+        }
+
+        function enterDoor() {
+            const popup2 = document.getElementById('popup2');
+            popup2.classList.remove('show');
+
+            setTimeout(() => {
+                startDoorAnimation();
+            }, 200);
         }
 
         // 이미지 미리 로드
