@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="파티 초대장">
-    <title>파티 초대장</title>
+    <meta name="description" content="ZIZIGO TOUR 결혼행 초대장">
+    <title>ZIZIGO TOUR 초대장</title>
     <style>
         * {
             margin: 0;
@@ -13,224 +13,162 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: #f5f5f5;
+            font-family: 'Courier New', Courier, monospace;
+            height: 100vh;
+            overflow: hidden;
+            background-color: #f0f0f0;
         }
 
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        .invitation-card {
-            background: white;
-            border-radius: 12px;
-            padding: 40px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            margin-top: 40px;
-        }
-
-        .header {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            color: #2c3e50;
-        }
-
-        .header p {
-            font-size: 1.2rem;
-            color: #7f8c8d;
-        }
-
-        .section {
-            margin-bottom: 30px;
-        }
-
-        .section h2 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-            color: #2c3e50;
-            border-bottom: 2px solid #3498db;
-            padding-bottom: 10px;
-        }
-
-        .info-item {
+        .main-container {
+            width: 100%;
+            height: 100vh;
             display: flex;
+            justify-content: center;
             align-items: center;
-            margin-bottom: 15px;
-            padding: 10px;
-            background: #f8f9fa;
-            border-radius: 6px;
+            background-image: url('images/main-home.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
         }
 
-        .info-item strong {
-            min-width: 100px;
-            color: #2c3e50;
+        .main-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.2);
         }
 
-        .rsvp-buttons {
+        .invitation-box {
+            position: relative;
+            z-index: 1;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px 30px;
+            border: 4px solid #333;
+            border-radius: 15px;
+            box-shadow:
+                0 8px 16px rgba(0, 0, 0, 0.3),
+                inset 0 2px 4px rgba(255, 255, 255, 0.5);
+            max-width: 90%;
+            width: 400px;
+            text-align: center;
+        }
+
+        .invitation-text {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #333;
+            margin-bottom: 30px;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+        }
+
+        .button-container {
             display: flex;
             gap: 15px;
-            margin-top: 20px;
             justify-content: center;
+            flex-wrap: wrap;
         }
 
-        .btn {
-            padding: 12px 30px;
-            border: none;
-            border-radius: 6px;
-            font-size: 1rem;
+        .vintage-btn {
+            padding: 15px 35px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            font-family: 'Courier New', Courier, monospace;
+            color: #fff;
+            background: linear-gradient(to bottom, #4a4a4a 0%, #2c2c2c 100%);
+            border: 3px solid #000;
+            border-radius: 8px;
             cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: 600;
+            transition: all 0.2s ease;
+            box-shadow:
+                0 5px 0 #000,
+                0 8px 15px rgba(0, 0, 0, 0.3);
+            position: relative;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        .btn-yes {
-            background: #2ecc71;
-            color: white;
+        .vintage-btn:hover {
+            transform: translateY(2px);
+            box-shadow:
+                0 3px 0 #000,
+                0 5px 10px rgba(0, 0, 0, 0.3);
         }
 
-        .btn-yes:hover {
-            background: #27ae60;
-            transform: translateY(-2px);
+        .vintage-btn:active {
+            transform: translateY(5px);
+            box-shadow:
+                0 0px 0 #000,
+                0 2px 5px rgba(0, 0, 0, 0.3);
         }
 
-        .btn-no {
-            background: #e74c3c;
-            color: white;
+        .vintage-btn.btn-yes {
+            background: linear-gradient(to bottom, #d4af37 0%, #b8941e 100%);
         }
 
-        .btn-no:hover {
-            background: #c0392b;
-            transform: translateY(-2px);
-        }
-
-        .message {
-            text-align: center;
-            margin-top: 20px;
-            padding: 15px;
-            border-radius: 6px;
-            display: none;
-        }
-
-        .message.show {
-            display: block;
-        }
-
-        .message.success {
-            background: #d4edda;
-            color: #155724;
-        }
-
-        .message.info {
-            background: #d1ecf1;
-            color: #0c5460;
-        }
-
-        footer {
-            text-align: center;
-            margin-top: 40px;
-            padding: 20px;
-            color: #7f8c8d;
+        .vintage-btn.btn-accept {
+            background: linear-gradient(to bottom, #8b4513 0%, #654321 100%);
         }
 
         @media (max-width: 600px) {
-            .invitation-card {
-                padding: 20px;
+            .invitation-box {
+                padding: 30px 20px;
+                width: 95%;
             }
 
-            .header h1 {
-                font-size: 1.8rem;
+            .invitation-text {
+                font-size: 1rem;
+                line-height: 1.6;
             }
 
-            .rsvp-buttons {
+            .button-container {
                 flex-direction: column;
+                gap: 12px;
             }
 
-            .btn {
+            .vintage-btn {
                 width: 100%;
+                padding: 15px 20px;
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .invitation-text {
+                font-size: 0.95rem;
+            }
+
+            .vintage-btn {
+                padding: 12px 20px;
+                font-size: 0.9rem;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="invitation-card">
-            <div class="header">
-                <h1>🎉 파티에 초대합니다!</h1>
-                <p>함께 즐거운 시간을 보내요</p>
+    <div class="main-container">
+        <div class="invitation-box">
+            <div class="invitation-text">
+                결혼행 초대장이 도착했어요!<br>
+                초대를 수락하시겠어요?
             </div>
-
-            <div class="section">
-                <h2>📅 일정</h2>
-                <div class="info-item">
-                    <strong>날짜:</strong>
-                    <span>2024년 12월 25일 (수)</span>
-                </div>
-                <div class="info-item">
-                    <strong>시간:</strong>
-                    <span>저녁 7시</span>
-                </div>
-            </div>
-
-            <div class="section">
-                <h2>📍 장소</h2>
-                <div class="info-item">
-                    <strong>주소:</strong>
-                    <span>서울특별시 강남구 테헤란로 123</span>
-                </div>
-            </div>
-
-            <div class="section">
-                <h2>👔 드레스 코드</h2>
-                <div class="info-item">
-                    <span>편안한 캐주얼</span>
-                </div>
-            </div>
-
-            <div class="section">
-                <h2>📝 안내사항</h2>
-                <div class="info-item">
-                    <span>주차 가능 / 음료 및 간식 제공</span>
-                </div>
-            </div>
-
-            <div class="section">
-                <h2>💌 참석 여부</h2>
-                <div class="rsvp-buttons">
-                    <button class="btn btn-yes" onclick="handleRSVP('yes')">참석할게요! ✓</button>
-                    <button class="btn btn-no" onclick="handleRSVP('no')">아쉽지만 불참 ✗</button>
-                </div>
-                <div id="message" class="message"></div>
+            <div class="button-container">
+                <button class="vintage-btn btn-yes" onclick="handleAccept('yes')">네</button>
+                <button class="vintage-btn btn-accept" onclick="handleAccept('accept')">수락할게요</button>
             </div>
         </div>
-
-        <footer>
-            <p>여러분의 참석을 기다립니다! 💝</p>
-        </footer>
     </div>
 
     <script>
-        function handleRSVP(response) {
-            const messageEl = document.getElementById('message');
-
-            if (response === 'yes') {
-                messageEl.textContent = '참석 의사를 확인했습니다! 당일 뵙겠습니다 😊';
-                messageEl.className = 'message success show';
-            } else {
-                messageEl.textContent = '다음 기회에 꼭 함께해요!';
-                messageEl.className = 'message info show';
-            }
-
-            // 실제 서비스에서는 여기서 서버로 RSVP 정보를 전송할 수 있습니다
-            console.log('RSVP:', response);
+        function handleAccept(response) {
+            // 상세페이지로 이동 (아직 생성 전이므로 임시 알림)
+            console.log('Response:', response);
+            alert('곧 상세페이지로 이동합니다!');
+            // 추후 페이지 이동: window.location.href = 'detail.html';
         }
     </script>
 </body>
