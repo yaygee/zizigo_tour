@@ -81,6 +81,42 @@
                 0 2px 5px rgba(0, 0, 0, 0.3);
         }
 
+        .contact-btn-top {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            font-family: 'Courier New', Courier, monospace;
+            color: #000;
+            background: #fff;
+            border: 3px solid #000;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow:
+                0 4px 0 #000,
+                0 6px 10px rgba(0, 0, 0, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            z-index: 10;
+        }
+
+        .contact-btn-top:hover {
+            transform: translateY(2px);
+            box-shadow:
+                0 2px 0 #000,
+                0 4px 8px rgba(0, 0, 0, 0.3);
+            background: #f5f5f5;
+        }
+
+        .contact-btn-top:active {
+            transform: translateY(4px);
+            box-shadow:
+                0 0px 0 #000,
+                0 2px 5px rgba(0, 0, 0, 0.3);
+        }
 
         .button-wrapper {
             display: flex;
@@ -311,6 +347,7 @@
 <body>
     <div class="detail-container">
         <button class="back-btn-top" onclick="goToHome()">← 뒤로가기</button>
+        <button class="contact-btn-top" onclick="openContactPopup()">문의하기</button>
 
         <div class="button-wrapper">
             <button class="vintage-btn" onclick="goToSchedule()">투어 일정표 보기</button>
@@ -349,7 +386,22 @@
                     </div>
                 </div>
                 <div class="payment-notice">
-                    * 입금 확인 안내 문자를 받으셔야 최종 결혼행 투어 확정이 됩니다.
+                    입금 후 확인 안내 문자를 받으셔야 결혼행 투어 확정이 되는 점 참고 부탁 드립니다.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 문의하기 팝업 -->
+    <div class="popup-overlay" id="contactPopup">
+        <div class="popup-content">
+            <div class="popup-header">
+                <div class="popup-title">문의하기</div>
+                <button class="close-btn" onclick="closeContactPopup()">&times;</button>
+            </div>
+            <div class="popup-body">
+                <div class="popup-message">
+                    지지고 투어에서는 따로 문의를 받고 있지 않습니다.
                 </div>
             </div>
         </div>
@@ -368,6 +420,14 @@
             document.getElementById('paymentPopup').classList.remove('show');
         }
 
+        function openContactPopup() {
+            document.getElementById('contactPopup').classList.add('show');
+        }
+
+        function closeContactPopup() {
+            document.getElementById('contactPopup').classList.remove('show');
+        }
+
         function goToSchedule() {
             window.location.href = 'schedule.html';
         }
@@ -376,6 +436,7 @@
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
                 closePaymentPopup();
+                closeContactPopup();
             }
         });
 
@@ -383,6 +444,12 @@
         document.getElementById('paymentPopup').addEventListener('click', function(e) {
             if (e.target === this) {
                 closePaymentPopup();
+            }
+        });
+
+        document.getElementById('contactPopup').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeContactPopup();
             }
         });
     </script>
