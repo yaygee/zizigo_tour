@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="description" content="ZIZIGO TOUR 상세 정보">
     <title>ZIZIGO TOUR - 상세</title>
     <style>
@@ -235,11 +235,12 @@
         }
 
         .guideline-header {
-            padding: 15px 20px;
+            padding: 20px 20px;
             border-bottom: 3px solid #333;
             text-align: center;
             flex-shrink: 0;
             position: relative;
+            min-height: 60px;
         }
 
         .guideline-header h2 {
@@ -289,6 +290,7 @@
             position: relative;
             height: 500px;
             background-color: #fff;
+            touch-action: pan-x pan-y pinch-zoom;
         }
 
         .guideline-content iframe {
@@ -606,7 +608,7 @@
                 </a>
             </div>
             <div class="guideline-content">
-                <iframe src="안내문.pdf#toolbar=0&navpanes=0&scrollbar=1&view=FitH" type="application/pdf"></iframe>
+                <iframe src="안내문.pdf#toolbar=0&navpanes=0&scrollbar=1&zoom=page-width" type="application/pdf"></iframe>
             </div>
             <div class="guideline-footer">
                 <div class="checkbox-wrapper">
