@@ -178,12 +178,13 @@
             border: 3px solid #000;
             border-radius: 8px;
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: all 0.2s ease, opacity 0.5s ease;
             box-shadow:
                 0 5px 0 #000,
                 0 8px 15px rgba(0, 0, 0, 0.3);
             text-transform: uppercase;
             letter-spacing: 1px;
+            opacity: 0;
         }
 
         .welcome-btn:hover {
@@ -763,7 +764,7 @@
         }
 
         // 타이핑 애니메이션
-        function typeWriter(element, text, speed = 50) {
+        function typeWriter(element, text, speed = 50, callback) {
             let i = 0;
             element.innerHTML = '';
 
@@ -777,6 +778,9 @@
                         i++;
                     }
                     setTimeout(type, speed);
+                } else {
+                    // 타이핑 완료 후 콜백 실행
+                    if (callback) callback();
                 }
             }
 
@@ -792,7 +796,13 @@
                 // 처음 진입한 경우 타이핑 애니메이션 시작
                 const welcomeText = document.getElementById('welcomeText');
                 if (welcomeText) {
-                    typeWriter(welcomeText, '지지고 투어에 오신 걸 환영해요!<br>결혼행 투어 안내문을 먼저 읽어주세요', 50);
+                    typeWriter(welcomeText, '지지고 투어에 오신 걸 환영해요!<br>결혼행 투어 안내문을 먼저 읽어주세요', 50, function() {
+                        // 타이핑 완료 후 버튼 표시
+                        const welcomeBtn = document.querySelector('.welcome-btn');
+                        if (welcomeBtn) {
+                            welcomeBtn.style.opacity = '1';
+                        }
+                    });
                 }
             }
         });
