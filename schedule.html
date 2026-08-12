@@ -79,19 +79,152 @@
             letter-spacing: 2px;
             text-align: center;
             margin-top: 60px;
-            margin-bottom: 40px;
+            margin-bottom: 20px;
         }
 
         .content-area {
             max-width: 800px;
             margin: 0 auto;
             padding: 20px;
+            position: relative;
         }
 
-        .placeholder {
+        .table-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin-bottom: 30px;
+            border: 3px solid #000;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+
+        .schedule-table {
+            width: 100%;
+            min-width: 700px;
+            border-collapse: collapse;
+            background: #fff;
+        }
+
+        .schedule-table th {
+            background: #333;
+            color: #fff;
+            padding: 12px 8px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            border: 2px solid #000;
             text-align: center;
-            opacity: 0.3;
-            margin-top: 50px;
+        }
+
+        .schedule-table td {
+            padding: 12px 10px;
+            border: 2px solid #333;
+            font-size: 0.85rem;
+            line-height: 1.6;
+            vertical-align: top;
+        }
+
+        .day-header {
+            background: #666;
+            color: #fff;
+            font-weight: bold;
+            text-align: left;
+            font-size: 1.1rem;
+            padding: 15px 20px !important;
+            letter-spacing: 2px;
+        }
+
+        .onboarding-guide {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.85);
+            color: #fff;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: bold;
+            z-index: 10;
+            animation: fadeOut 3s ease-out forwards;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+            pointer-events: none;
+            text-align: center;
+        }
+
+        @keyframes fadeOut {
+            0% {
+                opacity: 1;
+            }
+            70% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                visibility: hidden;
+            }
+        }
+
+        .time-col {
+            width: 120px;
+            min-width: 120px;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        .location-col {
+            width: 150px;
+            min-width: 150px;
+            font-weight: bold;
+        }
+
+        .content-col {
+            width: 250px;
+            min-width: 250px;
+        }
+
+        .note-col {
+            width: 180px;
+            min-width: 180px;
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        .highlight-red {
+            color: #d32f2f;
+            font-weight: bold;
+        }
+
+        @media (max-width: 600px) {
+            .schedule-table {
+                font-size: 0.75rem;
+            }
+
+            .schedule-table th {
+                padding: 10px 5px;
+                font-size: 0.8rem;
+            }
+
+            .schedule-table td {
+                padding: 10px 8px;
+                font-size: 0.8rem;
+            }
+
+            .time-col {
+                width: 18%;
+            }
+
+            .location-col {
+                width: 22%;
+            }
+
+            .content-col {
+                width: 35%;
+            }
+
+            .note-col {
+                width: 25%;
+                font-size: 0.7rem;
+            }
         }
 
         @media (max-width: 600px) {
@@ -111,11 +244,95 @@
         <div class="header">
             <button class="back-btn" onclick="goBack()">← 뒤로가기</button>
         </div>
-        <h1 class="page-title">투어 일정표</h1>
+        <h1 class="page-title">결혼행 투어 일정표</h1>
 
         <div class="content-area">
-            <div class="placeholder">
-                <!-- 일정표 내용은 나중에 추가 -->
+            <div class="table-wrapper">
+                <div class="onboarding-guide">👉  👈<br>좌우로 움직여보세요</div>
+                <table class="schedule-table">
+                <thead>
+                    <tr>
+                        <th>시간</th>
+                        <th>장소</th>
+                        <th>내용</th>
+                        <th>참고</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td colspan="4" class="day-header">1일차</td>
+                    </tr>
+                    <tr>
+                        <td class="time-col">06:30~</td>
+                        <td class="location-col">청량리 집결</td>
+                        <td class="content-col">청량리역에서 7:00 출발 KTX 타고 동해역으로 이동</td>
+                        <td class="note-col">청량리역이 꽤 복잡합니다. <span class="highlight-red">7시 기차이지만 여유 있게 도착해주세요.</span></td>
+                    </tr>
+                    <tr>
+                        <td class="time-col">09:28~</td>
+                        <td class="location-col">동해역 도착</td>
+                        <td class="content-col"></td>
+                        <td class="note-col"></td>
+                    </tr>
+                    <tr>
+                        <td class="time-col">09:40</td>
+                        <td class="location-col">동해 농협하나로마트</td>
+                        <td class="content-col">1박2일 장보고 근처에서 점심으로 먹을 회 포장</td>
+                        <td class="note-col">동해역-마트(택시로 7분 소요) 마트-갈남항(택시 40분 소요)</td>
+                    </tr>
+                    <tr>
+                        <td class="time-col">11:30~</td>
+                        <td class="location-col">갈남항 도착</td>
+                        <td class="content-col">점심으로 화이트와인+회<br>1차 사진 촬영</td>
+                        <td class="note-col">마트-갈남항(택시 40분 소요)</td>
+                    </tr>
+                    <tr>
+                        <td class="time-col">15:00~</td>
+                        <td class="location-col">숙소(향초목원)로 출발</td>
+                        <td class="content-col"></td>
+                        <td class="note-col">갈남항-숙소(택시 40분 소요)</td>
+                    </tr>
+                    <tr>
+                        <td class="time-col">~17:30</td>
+                        <td class="location-col">향초목원</td>
+                        <td class="content-col">휴식+외모정리</td>
+                        <td class="note-col"></td>
+                    </tr>
+                    <tr>
+                        <td class="time-col">~20:00</td>
+                        <td class="location-col">향초목원 실내</td>
+                        <td class="content-col">2차 사진 찍기</td>
+                        <td class="note-col"></td>
+                    </tr>
+                    <tr>
+                        <td class="time-col">20:00~</td>
+                        <td class="location-col">향초목원 실내</td>
+                        <td class="content-col">저녁 +레크레이션</td>
+                        <td class="note-col"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="4" class="day-header">2일차</td>
+                    </tr>
+                    <tr>
+                        <td class="time-col">09:00</td>
+                        <td class="location-col"></td>
+                        <td class="content-col">기상</td>
+                        <td class="note-col"></td>
+                    </tr>
+                    <tr>
+                        <td class="time-col">퇴실까지</td>
+                        <td class="location-col">향초목원 야외</td>
+                        <td class="content-col">3차 사진찍기</td>
+                        <td class="note-col"></td>
+                    </tr>
+                    <tr>
+                        <td class="time-col">12:00~</td>
+                        <td class="location-col">맛집</td>
+                        <td class="content-col">동해 맛집에서 밥 먹고 귀갓길~</td>
+                        <td class="note-col"></td>
+                    </tr>
+                </tbody>
+            </table>
             </div>
         </div>
     </div>
