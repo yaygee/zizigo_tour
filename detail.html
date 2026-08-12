@@ -137,6 +137,246 @@
             }
         }
 
+        /* 환영 오버레이 */
+        .welcome-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(255, 255, 255, 0.95);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1001;
+            padding: 20px;
+        }
+
+        .welcome-overlay.hidden {
+            display: none;
+        }
+
+        .welcome-message {
+            text-align: center;
+        }
+
+        .welcome-message h2 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 30px;
+            line-height: 1.8;
+            color: #333;
+        }
+
+        .welcome-btn {
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            font-family: 'Courier New', Courier, monospace;
+            color: #000;
+            background: #fff;
+            border: 3px solid #000;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow:
+                0 5px 0 #000,
+                0 8px 15px rgba(0, 0, 0, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .welcome-btn:hover {
+            transform: translateY(2px);
+            box-shadow:
+                0 3px 0 #000,
+                0 5px 10px rgba(0, 0, 0, 0.3);
+            background: #f5f5f5;
+        }
+
+        .welcome-btn:active {
+            transform: translateY(5px);
+            box-shadow:
+                0 0px 0 #000,
+                0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        /* 안내문 오버레이 */
+        .guideline-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            padding: 20px;
+        }
+
+        .guideline-overlay.show {
+            display: flex;
+        }
+
+        .guideline-popup {
+            background: #fff;
+            border: 4px solid #333;
+            border-radius: 15px;
+            width: 85%;
+            max-width: 500px;
+            max-height: 85vh;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .guideline-header {
+            padding: 15px 20px;
+            border-bottom: 3px solid #333;
+            text-align: center;
+            flex-shrink: 0;
+            position: relative;
+        }
+
+        .guideline-header h2 {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #000;
+        }
+
+        .download-btn {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 32px;
+            height: 32px;
+            background: #fff;
+            border: 2px solid #000;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            box-shadow: 0 2px 0 #000, 0 3px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .download-btn:hover {
+            background: #f5f5f5;
+            transform: translateY(-49%) translateY(-1px);
+            box-shadow: 0 1px 0 #000, 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .download-btn:active {
+            transform: translateY(-49%) translateY(1px);
+            box-shadow: 0 0px 0 #000, 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        .download-btn svg {
+            width: 16px;
+            height: 16px;
+            fill: #000;
+        }
+
+        .guideline-content {
+            overflow: auto;
+            position: relative;
+            height: 500px;
+            background-color: #fff;
+        }
+
+        .guideline-content iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+        }
+
+        @media (max-width: 600px) {
+            .guideline-popup {
+                width: 95%;
+                max-height: 90vh;
+            }
+
+            .guideline-header h2 {
+                font-size: 1rem;
+            }
+
+            .guideline-content {
+                height: 400px;
+            }
+        }
+
+        .guideline-footer {
+            padding: 15px 20px;
+            border-top: 3px solid #333;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            align-items: center;
+            flex-shrink: 0;
+        }
+
+        .checkbox-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .checkbox-wrapper input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .checkbox-wrapper label {
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .guideline-btn {
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            font-family: 'Courier New', Courier, monospace;
+            color: #000;
+            background: #fff;
+            border: 3px solid #000;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow:
+                0 5px 0 #000,
+                0 8px 15px rgba(0, 0, 0, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .guideline-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .guideline-btn:not(:disabled):hover {
+            transform: translateY(2px);
+            box-shadow:
+                0 3px 0 #000,
+                0 5px 10px rgba(0, 0, 0, 0.3);
+            background: #f5f5f5;
+        }
+
+        .guideline-btn:not(:disabled):active {
+            transform: translateY(5px);
+            box-shadow:
+                0 0px 0 #000,
+                0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
         .vintage-btn {
             padding: 12px 28px;
             font-size: 0.95rem;
@@ -345,6 +585,37 @@
     </style>
 </head>
 <body>
+    <!-- 환영 오버레이 -->
+    <div class="welcome-overlay" id="welcomeOverlay">
+        <div class="welcome-message">
+            <h2>지지고 투어에 오신 걸 환영해요!<br>결혼행 투어 안내문을 먼저 읽어주세요</h2>
+            <button class="welcome-btn" onclick="showGuideline()">안내문 확인하기</button>
+        </div>
+    </div>
+
+    <!-- 안내문 PDF 오버레이 -->
+    <div class="guideline-overlay" id="guidelineOverlay">
+        <div class="guideline-popup">
+            <div class="guideline-header">
+                <a href="안내문.pdf" download="ZIZIGO_TOUR_안내문.pdf" class="download-btn" title="안내문 다운로드">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M12 16l-5-5h3V4h4v7h3l-5 5zm-6 4h12v2H6v-2z"/>
+                    </svg>
+                </a>
+            </div>
+            <div class="guideline-content">
+                <iframe src="안내문.pdf#toolbar=0&navpanes=0&scrollbar=1" type="application/pdf"></iframe>
+            </div>
+            <div class="guideline-footer">
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" id="guidelineCheck" onchange="toggleConfirmButton()">
+                    <label for="guidelineCheck">안내문을 모두 숙지했습니다.</label>
+                </div>
+                <button class="guideline-btn" id="confirmBtn" onclick="closeGuideline()" disabled>확인하기</button>
+            </div>
+        </div>
+    </div>
+
     <div class="detail-container">
         <button class="back-btn-top" onclick="goToHome()">← 뒤로가기</button>
         <button class="contact-btn-top" onclick="openContactPopup()">문의하기</button>
@@ -410,6 +681,21 @@
     <script>
         function goToHome() {
             window.location.href = 'index.html';
+        }
+
+        function showGuideline() {
+            document.getElementById('welcomeOverlay').classList.add('hidden');
+            document.getElementById('guidelineOverlay').classList.add('show');
+        }
+
+        function toggleConfirmButton() {
+            const checkbox = document.getElementById('guidelineCheck');
+            const confirmBtn = document.getElementById('confirmBtn');
+            confirmBtn.disabled = !checkbox.checked;
+        }
+
+        function closeGuideline() {
+            document.getElementById('guidelineOverlay').classList.remove('show');
         }
 
         function openPaymentPopup() {
