@@ -337,19 +337,21 @@
 
         .guideline-content {
             overflow: auto;
+            overflow-x: auto;
+            overflow-y: auto;
             position: relative;
             height: 500px;
             background-color: #fff;
             touch-action: pan-x pan-y pinch-zoom;
+            -webkit-overflow-scrolling: touch;
         }
 
         .guideline-content img {
             width: 100%;
-            height: 100%;
+            height: auto;
+            max-width: none;
             border: none;
             display: block;
-            object-fit: contain;
-            object-position: top center;
             transition: transform 0.3s ease;
         }
 
@@ -751,8 +753,8 @@
             const img = document.getElementById('guidelineImage');
             if (currentZoom < maxZoom) {
                 currentZoom += zoomStep;
-                img.style.transform = `scale(${currentZoom})`;
-                img.style.transformOrigin = 'top center';
+                img.style.width = (currentZoom * 100) + '%';
+                img.style.height = 'auto';
             }
         }
 
@@ -760,8 +762,8 @@
             const img = document.getElementById('guidelineImage');
             if (currentZoom > minZoom) {
                 currentZoom -= zoomStep;
-                img.style.transform = `scale(${currentZoom})`;
-                img.style.transformOrigin = 'top center';
+                img.style.width = (currentZoom * 100) + '%';
+                img.style.height = 'auto';
             }
         }
 
